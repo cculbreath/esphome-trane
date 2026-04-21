@@ -1,0 +1,1213 @@
+INFO ESPHome 2026.4.1
+INFO Reading configuration custom-esphome-trane.yaml...
+INFO Starting log output from esphome-trane.local using esphome API
+INFO Successfully resolved esphome-trane.local in 0.172s
+INFO Successfully connected to esphome-trane @ 192.168.68.59 in 0.036s
+INFO Successful handshake with esphome-trane @ 192.168.68.59 in 0.018s
+[11:07:04.189][I][app:154]: ESPHome version 2026.4.1 compiled on 2026-04-21 11:04:28 -0500
+[11:07:04.191][I][app:161]: ESP32 Chip: ESP32-S3 rev0.1, 2 core(s)
+[11:07:04.191][C][logger:219]: Logger:
+[11:07:04.191][C][logger:219]:   Max Level: DEBUG
+[11:07:04.191][C][logger:219]:   Initial Level: DEBUG
+[11:07:04.191][C][logger:226]:   Log Baud Rate: 115200
+[11:07:04.191][C][logger:226]:   Hardware UART: USB_SERIAL_JTAG
+[11:07:04.199][C][logger:235]:   Task Log Buffer Size: 768 bytes
+[11:07:04.205][C][logger:241]:   Level for 'can641': DEBUG
+[11:07:04.212][C][logger:241]:   Level for 'can641_raw': DEBUG
+[11:07:04.240][C][logger:241]:   Level for 'can649': DEBUG
+[11:07:04.243][C][logger:241]:   Level for 'canbus': WARN
+[11:07:04.243][C][logger:241]:   Level for 'sensor': WARN
+[11:07:04.253][C][template.sensor:017]: Template Sensor 'Room Temperature'
+[11:07:04.253][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.253][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.253][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.253][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.255][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.255][C][template.sensor:017]: Template Sensor 'Indoor Humidity'
+[11:07:04.255][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.255][C][template.sensor:017]:   Unit of Measurement: '%'
+[11:07:04.255][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.262][C][template.sensor:232]:   Device Class: 'humidity'
+[11:07:04.266][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.273][C][template.sensor:017]: Template Sensor 'Heat Setpoint Zone 1'
+[11:07:04.273][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.273][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.273][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.278][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.284][C][template.sensor:451]:   Update Interval: 5.0s
+[11:07:04.294][C][template.sensor:017]: Template Sensor 'Cool Setpoint Zone 1'
+[11:07:04.294][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.294][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.294][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.299][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.299][C][template.sensor:451]:   Update Interval: 5.0s
+[11:07:04.306][C][template.sensor:017]: Template Sensor 'Weather Humidity'
+[11:07:04.306][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.306][C][template.sensor:017]:   Unit of Measurement: '%'
+[11:07:04.306][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.336][C][template.sensor:232]:   Device Class: 'humidity'
+[11:07:04.336][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.337][C][template.sensor:017]: Template Sensor 'System Demand Percent'
+[11:07:04.337][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.337][C][template.sensor:017]:   Unit of Measurement: '%'
+[11:07:04.337][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.337][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.337][C][template.sensor:017]: Template Sensor 'Temp Sensor 1'
+[11:07:04.337][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.337][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.337][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.337][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.337][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.342][C][template.sensor:017]: Template Sensor 'Temp Sensor 2'
+[11:07:04.342][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.342][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.342][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.342][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.348][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.359][C][template.sensor:017]: Template Sensor 'Temp Sensor 3'
+[11:07:04.359][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.359][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.359][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.365][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.372][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.378][C][template.sensor:017]: Template Sensor 'SC360 Outdoor Temp'
+[11:07:04.378][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.378][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.378][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.382][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.391][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.397][C][template.sensor:017]: Template Sensor 'Indoor Temp 1'
+[11:07:04.397][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.397][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.397][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.397][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.397][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.411][C][template.sensor:017]: Template Sensor 'Indoor Temp 2'
+[11:07:04.411][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.411][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.411][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.417][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.417][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.444][C][template.sensor:017]: Template Sensor 'Supply Air Temp'
+[11:07:04.444][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.444][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.444][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.445][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.445][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.445][C][template.sensor:017]: Template Sensor 'Heat Exchanger Temp'
+[11:07:04.445][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.445][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.445][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.445][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.451][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.451][C][template.sensor:017]: Template Sensor 'Indoor Blower Speed'
+[11:07:04.451][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.451][C][template.sensor:017]:   Unit of Measurement: '%'
+[11:07:04.451][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.451][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.458][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:04.467][C][template.sensor:017]: Template Sensor 'Outdoor Coil Temp'
+[11:07:04.467][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.467][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.467][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.468][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.468][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.479][C][template.sensor:017]: Template Sensor 'Outdoor Air Temp'
+[11:07:04.479][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.479][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.479][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.487][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.497][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.506][C][template.sensor:017]: Template Sensor 'Discharge Temp'
+[11:07:04.506][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.506][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.506][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.506][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.511][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.511][C][template.sensor:017]: Template Sensor 'Suction Temp'
+[11:07:04.511][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.511][C][template.sensor:017]:   Unit of Measurement: '°F'
+[11:07:04.511][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.511][C][template.sensor:232]:   Device Class: 'temperature'
+[11:07:04.511][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.523][C][template.sensor:017]: Template Sensor 'Refrigerant Pressure'
+[11:07:04.523][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.523][C][template.sensor:017]:   Unit of Measurement: 'PSI'
+[11:07:04.523][C][template.sensor:017]:   Accuracy Decimals: 1
+[11:07:04.546][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.546][C][template.sensor:017]: Template Sensor 'Compressor Demand'
+[11:07:04.546][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.546][C][template.sensor:017]:   Unit of Measurement: '%'
+[11:07:04.546][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.546][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.552][C][template.sensor:017]: Template Sensor 'Compressor Frequency'
+[11:07:04.552][C][template.sensor:017]:   State Class: 'measurement'
+[11:07:04.552][C][template.sensor:017]:   Unit of Measurement: 'Hz'
+[11:07:04.552][C][template.sensor:017]:   Accuracy Decimals: 0
+[11:07:04.552][C][template.sensor:451]:   Update Interval: 60.0s
+[11:07:04.552][C][template.text_sensor:016]: Template Sensor 'Last JSON 649'
+[11:07:04.567][C][template.text_sensor:016]: Template Sensor 'Last JSON 641'
+[11:07:04.573][C][template.text_sensor:016]: Template Sensor 'System Mode'
+[11:07:04.581][C][template.text_sensor:016]: Template Sensor 'System Demand Stage'
+[11:07:04.590][C][template.text_sensor:016]: Template Sensor 'System Op Status D'
+[11:07:04.605][C][template.text_sensor:016]: Template Sensor 'Zone Mode'
+[11:07:04.623][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:07:04.643][C][template.text_sensor:016]: Template Sensor 'HC Status'
+[11:07:04.652][C][template.text_sensor:016]: Template Sensor 'Hold Text'
+[11:07:04.652][C][template.text_sensor:016]: Template Sensor 'Weather Condition Code'
+[11:07:04.653][C][template.text_sensor:016]: Template Sensor 'Weather Current Temp'
+[11:07:04.660][C][template.text_sensor:016]: Template Sensor 'Weather Feels Like'
+[11:07:04.676][C][template.text_sensor:016]: Template Sensor 'Indoor Unit State'
+[11:07:04.682][C][template.text_sensor:016]: Template Sensor 'Supply Air Fault'
+[11:07:04.710][C][trane_hvac.climate:010]: Trane HVAC Climate 'Trane Climate'
+[11:07:04.853][C][wifi:1505]: WiFi:
+[11:07:04.853][C][wifi:1505]:   Local MAC: F4:12:FA:9E:1A:78
+[11:07:04.853][C][wifi:1505]:   Connected: YES
+[11:07:04.868][C][wifi:1216]:   IP Address: 192.168.68.59
+[11:07:04.869][C][wifi:1227]:   SSID: 'ArcadianAvenueQ_IoT'
+[11:07:04.869][C][wifi:1227]:   BSSID: 46:78:95:A1:A9:66
+[11:07:04.869][C][wifi:1227]:   Hostname: 'esphome-trane'
+[11:07:04.869][C][wifi:1227]:   Signal strength: -56 dB ▂▄▆█
+[11:07:04.869][C][wifi:1227]:   Channel: 6
+[11:07:04.869][C][wifi:1227]:   Subnet: 255.255.252.0
+[11:07:04.869][C][wifi:1227]:   Gateway: 192.168.68.1
+[11:07:04.869][C][wifi:1227]:   DNS1: 1.1.1.1
+[11:07:04.869][C][wifi:1227]:   DNS2: 8.8.8.8
+[11:07:04.869][C][esphome.ota:071]: Over-The-Air updates:
+[11:07:04.869][C][esphome.ota:071]:   Address: esphome-trane.local:3232
+[11:07:04.869][C][esphome.ota:071]:   Version: 2
+[11:07:04.887][C][safe_mode:026]: Safe Mode:
+[11:07:04.887][C][safe_mode:026]:   Successful after: 60s
+[11:07:04.887][C][safe_mode:026]:   Invoke after: 10 attempts
+[11:07:04.887][C][safe_mode:026]:   Duration: 300s
+[11:07:04.888][C][safe_mode:043]:   Bootloader rollback: supported
+[11:07:04.888][C][api:235]: Server:
+[11:07:04.888][C][api:235]:   Address: esphome-trane.local:6053
+[11:07:04.888][C][api:235]:   Listen backlog: 4
+[11:07:04.888][C][api:235]:   Max connections: 8
+[11:07:04.888][C][api:247]:   Noise encryption: NO
+[11:07:04.896][C][mdns:194]: mDNS:
+[11:07:04.896][C][mdns:194]:   Hostname: esphome-trane
+[11:07:05.157][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:05.410][S][sensor]: 'Temp Sensor 2' >> 92.9 °F
+[11:07:05.802][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:06.016][S][climate]: 'Trane Climate' >>
+[11:07:06.016][S][climate]:   Mode: OFF
+[11:07:06.016][S][climate]:   Fan Mode: ON
+[11:07:06.016][S][climate]:   Current Temperature: 22.78°C
+[11:07:06.016][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:06.016][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:06.025][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:06.129][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:06.316][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:06.316][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:06.460][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:06.460][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:06.596][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:07:06.712][S][sensor]: 'Temp Sensor 1' >> 93.9 °F
+[11:07:07.165][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:07.828][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:08.064][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:08.204][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:08.204][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:08.479][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:08.479][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:08.479][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:08.479][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:08.706][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:07:09.421][S][climate]: 'Trane Climate' >>
+[11:07:09.421][S][climate]:   Mode: OFF
+[11:07:09.421][S][climate]:   Fan Mode: ON
+[11:07:09.421][S][climate]:   Current Temperature: 22.78°C
+[11:07:09.421][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:09.422][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:09.959][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:10.136][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:10.174][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:10.174][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:10.495][S][sensor]: 'Temp Sensor 2' >> 92.9 °F
+[11:07:10.495][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:10.495][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:10.495][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:10.495][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:10.671][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:10.871][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:11.073][S][climate]: 'Trane Climate' >>
+[11:07:11.073][S][climate]:   Mode: OFF
+[11:07:11.073][S][climate]:   Fan Mode: ON
+[11:07:11.073][S][climate]:   Current Temperature: 22.78°C
+[11:07:11.073][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:11.074][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:11.711][S][sensor]: 'Temp Sensor 1' >> 93.9 °F
+[11:07:12.073][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:12.172][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:12.173][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:12.521][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:12.522][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:12.522][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:12.627][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:12.627][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:12.901][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:13.878][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:14.198][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:14.198][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:14.198][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:14.376][S][climate]: 'Trane Climate' >>
+[11:07:14.376][S][climate]:   Mode: OFF
+[11:07:14.376][S][climate]:   Fan Mode: ON
+[11:07:14.376][S][climate]:   Current Temperature: 22.78°C
+[11:07:14.376][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:14.376][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:14.553][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:14.553][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:14.554][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:14.734][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:14.734][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:14.911][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:15.416][S][sensor]: 'Temp Sensor 2' >> 92.9 °F
+[11:07:16.014][S][climate]: 'Trane Climate' >>
+[11:07:16.014][S][climate]:   Mode: OFF
+[11:07:16.014][S][climate]:   Fan Mode: ON
+[11:07:16.014][S][climate]:   Current Temperature: 22.78°C
+[11:07:16.014][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:16.014][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:16.103][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:16.215][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:16.216][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:16.616][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:16.617][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:16.617][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:16.738][S][sensor]: 'Temp Sensor 1' >> 93.9 °F
+[11:07:16.738][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:16.738][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:16.889][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:18.103][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:18.204][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:18.205][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:07:18.560][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:18.560][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:18.561][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:18.970][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:18.970][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:18.970][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:19.379][S][climate]: 'Trane Climate' >>
+[11:07:19.379][S][climate]:   Mode: OFF
+[11:07:19.379][S][climate]:   Fan Mode: ON
+[11:07:19.379][S][climate]:   Current Temperature: 22.78°C
+[11:07:19.379][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:19.380][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:20.144][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:20.228][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:20.229][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:20.442][S][sensor]: 'Temp Sensor 2' >> 92.9 °F
+[11:07:20.569][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:20.569][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:20.569][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:20.936][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:21.091][S][climate]: 'Trane Climate' >>
+[11:07:21.091][S][climate]:   Mode: OFF
+[11:07:21.091][S][climate]:   Fan Mode: ON
+[11:07:21.091][S][climate]:   Current Temperature: 22.78°C
+[11:07:21.091][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:21.091][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:21.092][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:21.092][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:21.738][S][sensor]: 'Temp Sensor 1' >> 93.8 °F
+[11:07:22.029][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:22.157][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:22.255][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:22.256][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:22.657][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:22.657][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:22.657][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:22.861][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"D":"11","B":"B"}}}
+[11:07:22.873][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:22.873][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:22.948][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"D":"11","B":"B"}}}'
+[11:07:22.948][S][climate]: 'Trane Climate' >>
+[11:07:22.948][S][climate]:   Mode: COOL
+[11:07:22.948][S][climate]:   Fan Mode: ON
+[11:07:22.948][S][climate]:   Current Temperature: 22.78°C
+[11:07:22.948][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:22.949][S][text_sensor]: 'System Mode' >> 'cool'
+[11:07:22.949][S][text_sensor]: 'System Op Status D' >> '11'
+[11:07:22.949][S][sensor]: 'System Demand Percent' >> 11 %
+[11:07:22.949][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:23.267][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:23.267][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:24.192][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:24.258][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:24.258][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:24.259][S][climate]: 'Trane Climate' >>
+[11:07:24.259][S][climate]:   Mode: COOL
+[11:07:24.259][S][climate]:   Fan Mode: ON
+[11:07:24.259][S][climate]:   Current Temperature: 22.78°C
+[11:07:24.259][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:24.259][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:24.602][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:24.602][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:24.602][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:24.959][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:25.335][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:25.335][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:25.435][S][sensor]: 'Temp Sensor 2' >> 92.8 °F
+[11:07:26.021][S][climate]: 'Trane Climate' >>
+[11:07:26.021][S][climate]:   Mode: COOL
+[11:07:26.021][S][climate]:   Fan Mode: ON
+[11:07:26.021][S][climate]:   Current Temperature: 22.78°C
+[11:07:26.021][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:26.021][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:26.199][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:26.271][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:26.271][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:26.649][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:26.649][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:26.649][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:26.714][S][sensor]: 'Temp Sensor 1' >> 93.8 °F
+[11:07:26.988][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:27.557][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:27.558][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:28.208][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:28.384][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:28.385][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:28.579][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:28.579][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:28.579][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:29.096][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:29.460][S][climate]: 'Trane Climate' >>
+[11:07:29.460][S][climate]:   Mode: COOL
+[11:07:29.460][S][climate]:   Fan Mode: ON
+[11:07:29.460][S][climate]:   Current Temperature: 22.78°C
+[11:07:29.460][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:29.461][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:29.633][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:29.633][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:30.202][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:30.377][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:30.378][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:30.503][S][sensor]: 'Temp Sensor 2' >> 92.8 °F
+[11:07:30.627][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:30.627][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:30.627][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:31.053][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:31.054][S][climate]: 'Trane Climate' >>
+[11:07:31.054][S][climate]:   Mode: COOL
+[11:07:31.054][S][climate]:   Fan Mode: ON
+[11:07:31.054][S][climate]:   Current Temperature: 22.78°C
+[11:07:31.054][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:31.054][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:31.771][S][sensor]: 'Temp Sensor 1' >> 93.8 °F
+[11:07:31.771][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:31.771][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:32.284][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:32.427][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:32.427][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:32.650][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:32.651][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:32.651][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:33.019][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:33.901][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:33.901][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:34.257][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:34.437][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:34.437][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:34.437][S][climate]: 'Trane Climate' >>
+[11:07:34.437][S][climate]:   Mode: COOL
+[11:07:34.437][S][climate]:   Fan Mode: ON
+[11:07:34.437][S][climate]:   Current Temperature: 22.78°C
+[11:07:34.437][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:34.437][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:34.614][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:34.614][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:34.614][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:35.111][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:35.489][S][sensor]: 'Temp Sensor 2' >> 92.8 °F
+[11:07:36.072][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:36.072][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:36.072][S][climate]: 'Trane Climate' >>
+[11:07:36.072][S][climate]:   Mode: COOL
+[11:07:36.072][S][climate]:   Fan Mode: ON
+[11:07:36.072][S][climate]:   Current Temperature: 22.78°C
+[11:07:36.072][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:36.073][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:36.276][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:36.344][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:36.344][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:36.597][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:36.703][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:36.703][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:36.703][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:07:37.059][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:38.222][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:38.223][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:38.426][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:38.426][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:38.426][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:38.577][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:38.705][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:38.705][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:39.143][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:39.373][S][climate]: 'Trane Climate' >>
+[11:07:39.373][S][climate]:   Mode: COOL
+[11:07:39.373][S][climate]:   Fan Mode: ON
+[11:07:39.373][S][climate]:   Current Temperature: 22.78°C
+[11:07:39.373][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:39.374][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:40.281][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:40.281][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:40.287][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:40.383][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:40.383][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:40.383][S][sensor]: 'Temp Sensor 2' >> 92.8 °F
+[11:07:40.599][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:40.729][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:40.730][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:41.089][S][climate]: 'Trane Climate' >>
+[11:07:41.089][S][climate]:   Mode: COOL
+[11:07:41.089][S][climate]:   Fan Mode: ON
+[11:07:41.089][S][climate]:   Current Temperature: 22.78°C
+[11:07:41.089][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:41.090][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:41.090][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:41.724][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:07:42.289][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:42.390][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:42.391][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:42.391][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:42.391][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:42.581][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:42.738][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:42.738][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:43.136][S][sensor]: 'Refrigerant Pressure' >> 244.0 PSI
+[11:07:44.162][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:44.307][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:44.338][S][climate]: 'Trane Climate' >>
+[11:07:44.338][S][climate]:   Mode: COOL
+[11:07:44.338][S][climate]:   Fan Mode: ON
+[11:07:44.338][S][climate]:   Current Temperature: 22.78°C
+[11:07:44.338][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:44.339][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:44.340][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:44.340][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:44.536][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:44.536][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:44.536][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:44.638][S][sensor]: 'Refrigerant Pressure' >> nan PSI
+[11:07:44.638][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:44.762][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:44.921][S][sensor]: 'Outdoor Coil Temp' >> nan °F
+[11:07:44.921][S][sensor]: 'Outdoor Air Temp' >> nan °F
+[11:07:45.172][S][sensor]: 'Compressor Demand' >> nan %
+[11:07:45.411][S][sensor]: 'Weather Humidity' >> nan %
+[11:07:45.412][S][sensor]: 'Temp Sensor 2' >> 92.7 °F
+[11:07:45.412][S][sensor]: 'Discharge Temp' >> nan °F
+[11:07:45.700][S][sensor]: 'Suction Temp' >> nan °F
+[11:07:45.816][S][sensor]: 'Heat Exchanger Temp' >> nan °F
+[11:07:45.816][S][sensor]: 'Temp Sensor 2' >> nan °F
+[11:07:46.022][S][sensor]: 'Supply Air Temp' >> nan °F
+[11:07:46.022][S][climate]: 'Trane Climate' >>
+[11:07:46.022][S][climate]:   Mode: COOL
+[11:07:46.022][S][climate]:   Fan Mode: ON
+[11:07:46.022][S][climate]:   Current Temperature: 22.78°C
+[11:07:46.022][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:46.022][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:46.022][S][sensor]: 'Temp Sensor 3' >> nan °F
+[11:07:46.125][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:46.126][S][sensor]: 'Compressor Frequency' >> nan Hz
+[11:07:46.324][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:46.529][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:46.529][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:46.588][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:46.589][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:46.589][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:46.589][S][sensor]: 'Temp Sensor 1' >> nan °F
+[11:07:46.745][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:07:46.745][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:47.152][S][sensor]: 'System Demand Percent' >> nan %
+[11:07:47.153][S][sensor]: 'Indoor Blower Speed' >> nan %
+[11:07:47.429][S][sensor]: 'Room Temperature' >> nan °F
+[11:07:47.803][D][can641_raw:822]: RX: C2 0A 30 00 30 00 00 00 
+[11:07:47.803][D][can641_raw:822]: RX: 01 7B 22 5A 6F 6E 65 53 
+[11:07:47.803][D][can641_raw:822]: RX: 02 65 74 74 69 6E 67 73 
+[11:07:47.803][D][can641_raw:822]: RX: 03 22 3A 7B 22 50 75 74 
+[11:07:47.803][D][can641_raw:822]: RX: 04 22 3A 7B 22 31 22 3A 
+[11:07:47.803][D][can641_raw:822]: RX: 05 7B 22 5A 6F 6E 65 4D 
+[11:07:47.803][D][can641_raw:822]: RX: 06 6F 64 65 22 3A 22 33 
+[11:07:47.803][D][can641_raw:822]: RX: 87 22 7D 7D 7D 7D 00 33 
+[11:07:47.804][D][can641:836]: JSON: {"ZoneSettings":{"Put":{"1":{"ZoneMode":"3"}}}}
+[11:07:47.804][D][can641_raw:822]: RX: C5 00 00 00 00 00 00 00 
+[11:07:47.804][S][sensor]: 'SC360 Outdoor Temp' >> nan °F
+[11:07:47.805][S][text_sensor]: 'Last JSON 641' >> '{"ZoneSettings":{"Put":{"1":{"ZoneMode":"3"}}}}'
+[11:07:48.159][D][can649:593]: JSON: {"ZoneSettings":{"Update":{"1":{"ZoneMode":"3"}}}}
+[11:07:48.159][D][can649:593]: JSON: 
+[11:07:48.159][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:07:48.159][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:48.159][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:48.159][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:48.160][S][text_sensor]: 'Last JSON 649' >> ''
+[11:07:48.160][S][text_sensor]: 'Zone Mode' >> '3'
+[11:07:48.335][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:48.515][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:48.515][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:48.692][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:48.692][S][sensor]: 'Indoor Humidity' >> nan %
+[11:07:48.872][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:48.872][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:48.872][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:48.872][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:48.900][S][sensor]: 'Indoor Temp 2' >> nan °F
+[11:07:49.088][S][sensor]: 'Indoor Temp 1' >> nan °F
+[11:07:49.409][S][climate]: 'Trane Climate' >>
+[11:07:49.409][S][climate]:   Mode: COOL
+[11:07:49.409][S][climate]:   Fan Mode: ON
+[11:07:49.409][S][climate]:   Current Temperature: 22.78°C
+[11:07:49.409][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:49.409][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:50.167][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:50.409][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:50.530][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:50.530][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:50.530][S][sensor]: 'Temp Sensor 2' >> 92.7 °F
+[11:07:50.653][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:50.793][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:50.954][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:50.954][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:50.955][S][climate]: 'Trane Climate' >>
+[11:07:50.955][S][climate]:   Mode: COOL
+[11:07:50.955][S][climate]:   Fan Mode: ON
+[11:07:50.955][S][climate]:   Current Temperature: 22.78°C
+[11:07:50.955][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:50.955][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:51.753][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:07:52.233][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:52.410][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:52.590][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:52.591][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:52.591][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:52.946][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:52.946][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:53.126][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:53.126][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:54.196][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:54.404][S][climate]: 'Trane Climate' >>
+[11:07:54.404][S][climate]:   Mode: COOL
+[11:07:54.404][S][climate]:   Fan Mode: ON
+[11:07:54.404][S][climate]:   Current Temperature: 22.78°C
+[11:07:54.404][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:54.404][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:54.475][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:54.476][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:54.476][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:54.584][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:54.824][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:54.824][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:55.196][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:55.197][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:55.464][S][sensor]: 'Temp Sensor 2' >> 92.7 °F
+[11:07:56.142][S][climate]: 'Trane Climate' >>
+[11:07:56.142][S][climate]:   Mode: COOL
+[11:07:56.142][S][climate]:   Fan Mode: ON
+[11:07:56.142][S][climate]:   Current Temperature: 22.78°C
+[11:07:56.142][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:56.143][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:07:56.214][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:07:56.394][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:56.504][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:56.504][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:56.504][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:56.860][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:07:56.860][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:56.860][D][can641_raw:822]: RX: C2 0A 30 00 30 00 00 00 
+[11:07:56.860][D][can641_raw:822]: RX: 01 7B 22 5A 6F 6E 65 53 
+[11:07:56.861][D][can641_raw:822]: RX: 03 22 3A 7B 22 50 75 74 
+[11:07:56.861][D][can641_raw:822]: RX: 04 22 3A 7B 22 31 22 3A 
+[11:07:56.861][D][can641_raw:822]: RX: 05 7B 22 5A 6F 6E 65 4D 
+[11:07:56.861][D][can641_raw:822]: RX: 06 6F 64 65 22 3A 22 32 
+[11:07:56.861][D][can641_raw:822]: RX: 87 22 7D 7D 7D 7D 00 32 
+[11:07:56.861][D][can641:836]: JSON: {"ZoneS":{"Put":{"1":{"ZoneMode":"2"}}}}
+[11:07:56.868][D][can641_raw:822]: RX: C5 00 00 00 00 00 00 00 
+[11:07:56.868][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:56.869][S][text_sensor]: 'Last JSON 641' >> '{"ZoneS":{"Put":{"1":{"ZoneMode":"2"}}}}'
+[11:07:57.096][D][can649:593]: JSON: {"ZoneSettings":{"Update":{"1":{"ZoneMode":"2"}}}}
+[11:07:57.107][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:07:57.123][D][can649:593]: JSON: 
+[11:07:57.130][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:57.144][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:57.199][S][text_sensor]: 'Last JSON 649' >> ''
+[11:07:57.199][S][text_sensor]: 'Zone Mode' >> '2'
+[11:07:57.199][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:57.199][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:58.181][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"D":"0"}}}
+[11:07:58.181][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:07:58.181][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:58.181][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:58.208][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"D":"0"}}}'
+[11:07:58.208][S][text_sensor]: 'System Op Status D' >> '0'
+[11:07:58.208][S][sensor]: 'System Demand Percent' >> 0 %
+[11:07:58.416][D][can380:899]: 0x380: -99.0 / 61.1
+[11:07:58.522][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:07:58.523][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:07:58.523][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:07:58.861][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:07:58.862][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:07:59.215][D][can649:593]: JSON: {"ZoneStatus":{"Update":{"1":{"H":"74.00"}}}}
+[11:07:59.215][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:07:59.215][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:59.215][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:59.227][S][text_sensor]: 'Last JSON 649' >> '{"ZoneStatus":{"Update":{"1":{"H":"74.00"}}}}'
+[11:07:59.227][S][climate]: 'Trane Climate' >>
+[11:07:59.227][S][climate]:   Mode: COOL
+[11:07:59.227][S][climate]:   Fan Mode: ON
+[11:07:59.227][S][climate]:   Current Temperature: 23.33°C
+[11:07:59.227][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:59.227][S][sensor]: 'Room Temperature' >> 74.0 °F
+[11:07:59.342][S][climate]: 'Trane Climate' >>
+[11:07:59.342][S][climate]:   Mode: COOL
+[11:07:59.342][S][climate]:   Fan Mode: ON
+[11:07:59.342][S][climate]:   Current Temperature: 23.33°C
+[11:07:59.342][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:59.342][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:07:59.342][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:07:59.342][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:07:59.362][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"B":"A"}}}
+[11:07:59.369][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:07:59.384][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:07:59.402][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:07:59.477][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"B":"A"}}}'
+[11:07:59.477][S][climate]: 'Trane Climate' >>
+[11:07:59.477][S][climate]:   Mode: HEAT
+[11:07:59.477][S][climate]:   Fan Mode: ON
+[11:07:59.477][S][climate]:   Current Temperature: 23.33°C
+[11:07:59.477][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:07:59.478][S][text_sensor]: 'System Mode' >> 'heat'
+[11:08:00.246][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:00.426][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:00.474][S][sensor]: 'Temp Sensor 2' >> 92.7 °F
+[11:08:00.474][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:00.474][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:08:00.589][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:00.954][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:01.039][S][climate]: 'Trane Climate' >>
+[11:08:01.039][S][climate]:   Mode: HEAT
+[11:08:01.039][S][climate]:   Fan Mode: ON
+[11:08:01.039][S][climate]:   Current Temperature: 23.33°C
+[11:08:01.039][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:01.040][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:01.569][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:01.570][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:01.775][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:02.257][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:02.444][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:02.541][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:02.541][S][sensor]: 'Suction Temp' >> 60.8 °F
+[11:08:02.541][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:03.002][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:03.002][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:03.617][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:03.617][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:04.257][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:04.257][S][climate]: 'Trane Climate' >>
+[11:08:04.257][S][climate]:   Mode: HEAT
+[11:08:04.257][S][climate]:   Fan Mode: ON
+[11:08:04.257][S][climate]:   Current Temperature: 23.33°C
+[11:08:04.257][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:04.258][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:04.455][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:04.556][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:04.556][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:04.556][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:04.903][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:04.903][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:05.483][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:05.694][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:05.694][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:06.085][S][climate]: 'Trane Climate' >>
+[11:08:06.085][S][climate]:   Mode: HEAT
+[11:08:06.085][S][climate]:   Fan Mode: ON
+[11:08:06.085][S][climate]:   Current Temperature: 23.33°C
+[11:08:06.085][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:06.086][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:06.386][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:06.499][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:06.617][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:06.617][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:06.617][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:06.762][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:06.928][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:07.586][D][can641_raw:822]: RX: C2 0A 30 00 30 00 00 00 
+[11:08:07.587][D][can641_raw:822]: RX: 01 7B 22 5A 6F 6E 65 53 
+[11:08:07.587][D][can641_raw:822]: RX: 02 65 74 74 69 6E 67 73 
+[11:08:07.587][D][can641_raw:822]: RX: 03 22 3A 7B 22 50 75 74 
+[11:08:07.588][D][can641_raw:822]: RX: 04 22 3A 7B 22 31 22 3A 
+[11:08:07.588][D][can641_raw:822]: RX: 05 7B 22 5A 6F 6E 65 4D 
+[11:08:07.588][D][can641_raw:822]: RX: 06 6F 64 65 22 3A 22 30 
+[11:08:07.588][D][can641_raw:822]: RX: 87 22 7D 7D 7D 7D 00 30 
+[11:08:07.595][D][can641:836]: JSON: {"ZoneSettings":{"Put":{"1":{"ZoneMode":"0"}}}}
+[11:08:07.595][D][can641_raw:822]: RX: C5 00 00 00 00 00 00 00 
+[11:08:07.765][S][text_sensor]: 'Last JSON 641' >> '{"ZoneSettings":{"Put":{"1":{"ZoneMode":"0"}}}}'
+[11:08:07.942][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:07.942][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:08.300][D][can649:593]: JSON: {"ZoneSettings":{"Update":{"1":{"ZoneMode":"0"}}}}
+[11:08:08.301][D][can649:593]: JSON: 
+[11:08:08.301][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:08.301][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:08.301][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:08.301][S][text_sensor]: 'Last JSON 649' >> ''
+[11:08:08.301][S][text_sensor]: 'Zone Mode' >> '0'
+[11:08:08.479][D][can649:593]: JSON: {"ZoneStatus":{"Update":{"1":{"HoldText":""}}}}
+[11:08:08.479][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:08.479][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:08.479][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:08.479][S][text_sensor]: 'Last JSON 649' >> '{"ZoneStatus":{"Update":{"1":{"HoldText":""}}}}'
+[11:08:08.479][S][text_sensor]: 'Hold Text' >> ''
+[11:08:08.486][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:08.655][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:08.655][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:08.655][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:09.014][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:09.014][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:09.369][S][climate]: 'Trane Climate' >>
+[11:08:09.369][S][climate]:   Mode: HEAT
+[11:08:09.369][S][climate]:   Fan Mode: ON
+[11:08:09.369][S][climate]:   Current Temperature: 23.33°C
+[11:08:09.369][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:09.369][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:09.600][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:09.913][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:09.913][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:10.277][D][can649:593]: JSON: {"ZoneStatus":{"Update":{"1":{"HcStatus":"0"}}}}
+[11:08:10.277][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:10.277][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:10.277][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:10.301][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:10.302][S][text_sensor]: 'Last JSON 649' >> '{"ZoneStatus":{"Update":{"1":{"HcStatus":"0"}}}}'
+[11:08:10.302][S][text_sensor]: 'HC Status' >> '0'
+[11:08:10.393][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"A":"C","B":"C"}}}
+[11:08:10.401][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:10.411][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:10.422][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:10.500][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:10.500][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"A":"C","B":"C"}}}'
+[11:08:10.500][S][climate]: 'Trane Climate' >>
+[11:08:10.500][S][climate]:   Mode: OFF
+[11:08:10.500][S][climate]:   Fan Mode: ON
+[11:08:10.500][S][climate]:   Current Temperature: 23.33°C
+[11:08:10.500][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:10.500][S][text_sensor]: 'System Mode' >> 'off'
+[11:08:10.512][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:10.655][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:10.655][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:10.655][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:11.011][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:11.011][S][climate]: 'Trane Climate' >>
+[11:08:11.011][S][climate]:   Mode: OFF
+[11:08:11.011][S][climate]:   Fan Mode: ON
+[11:08:11.011][S][climate]:   Current Temperature: 23.33°C
+[11:08:11.011][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:11.011][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:11.784][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:12.099][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:12.099][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:12.635][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:12.636][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:12.636][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:12.636][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:12.991][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:14.216][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:14.217][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:14.360][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:14.361][S][climate]: 'Trane Climate' >>
+[11:08:14.361][S][climate]:   Mode: OFF
+[11:08:14.361][S][climate]:   Fan Mode: ON
+[11:08:14.361][S][climate]:   Current Temperature: 23.33°C
+[11:08:14.361][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:14.361][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:14.589][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:14.589][S][sensor]: 'Heat Exchanger Temp' >> 66.1 °F
+[11:08:14.589][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:14.589][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:14.996][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:14.996][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:15.506][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:15.609][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:16.109][S][climate]: 'Trane Climate' >>
+[11:08:16.109][S][climate]:   Mode: OFF
+[11:08:16.109][S][climate]:   Fan Mode: ON
+[11:08:16.109][S][climate]:   Current Temperature: 23.33°C
+[11:08:16.109][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:16.110][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:16.314][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:16.315][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:16.315][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:16.622][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:16.647][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:16.647][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:16.746][D][can641_raw:822]: RX: C2 0A 30 00 30 00 00 00 
+[11:08:16.755][D][can641_raw:822]: RX: 01 7B 22 5A 6F 6E 65 53 
+[11:08:16.755][D][can641_raw:822]: RX: 02 65 74 74 69 6E 67 73 
+[11:08:16.767][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:16.774][D][can641_raw:822]: RX: 03 22 3A 7B 22 50 75 74 
+[11:08:16.774][D][can641_raw:822]: RX: 04 22 3A 7B 22 31 22 3A 
+[11:08:16.780][D][can641_raw:822]: RX: 05 7B 22 5A 6F 6E 65 4D 
+[11:08:16.781][D][can641_raw:822]: RX: 06 6F 64 65 22 3A 22 31 
+[11:08:16.788][D][can641_raw:822]: RX: 87 22 7D 7D 7D 7D 00 31 
+[11:08:16.788][D][can641:836]: JSON: {"ZoneSettings":{"Put":{"1":{"ZoneMode":"1"}}}}
+[11:08:16.789][D][can641_raw:822]: RX: C5 00 00 00 00 00 00 00 
+[11:08:16.873][S][text_sensor]: 'Last JSON 641' >> '{"ZoneSettings":{"Put":{"1":{"ZoneMode":"1"}}}}'
+[11:08:16.980][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:16.980][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:17.365][D][can649:593]: JSON: {"ZoneSettings":{"Update":{"1":{"ZoneMode":"1"}}}}
+[11:08:17.366][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:17.366][D][can649:593]: JSON: 
+[11:08:17.366][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:17.373][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:17.455][S][text_sensor]: 'Last JSON 649' >> ''
+[11:08:17.456][S][text_sensor]: 'Zone Mode' >> '1'
+[11:08:17.505][D][can649:593]: JSON: {"ZoneStatus":{"Update":{"1":{"HoldText":"Holding Permanently"}}}}
+[11:08:17.513][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:17.532][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:17.573][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:17.587][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:17.587][S][text_sensor]: 'Last JSON 649' >> '{"ZoneStatus":{"Update":{"1":{"HoldText":"Holding Permanently"}}}}'
+[11:08:17.587][S][text_sensor]: 'Hold Text' >> 'Holding Permanently'
+[11:08:18.465][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:18.465][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:18.466][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:18.582][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:18.635][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"D":"10"}}}
+[11:08:18.640][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:18.658][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:18.658][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:18.658][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"D":"10"}}}'
+[11:08:18.659][S][text_sensor]: 'System Op Status D' >> '10'
+[11:08:18.659][S][sensor]: 'System Demand Percent' >> 10 %
+[11:08:18.678][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:18.679][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:19.079][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:19.079][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:19.345][S][climate]: 'Trane Climate' >>
+[11:08:19.345][S][climate]:   Mode: OFF
+[11:08:19.345][S][climate]:   Fan Mode: ON
+[11:08:19.345][S][climate]:   Current Temperature: 23.33°C
+[11:08:19.345][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:19.345][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:19.459][D][can649:593]: JSON: {"ZoneStatus":{"Update":{"1":{"H":"73.00","HcStatus":"1"}}}}
+[11:08:19.465][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:19.466][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:19.512][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:19.570][S][text_sensor]: 'Last JSON 649' >> '{"ZoneStatus":{"Update":{"1":{"H":"73.00","HcStatus":"1"}}}}'
+[11:08:19.570][S][climate]: 'Trane Climate' >>
+[11:08:19.570][S][climate]:   Mode: OFF
+[11:08:19.570][S][climate]:   Fan Mode: ON
+[11:08:19.570][S][climate]:   Current Temperature: 22.78°C
+[11:08:19.570][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:19.570][S][sensor]: 'Room Temperature' >> 73.0 °F
+[11:08:19.570][S][text_sensor]: 'HC Status' >> '1'
+[11:08:19.570][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:19.656][D][can649:593]: JSON: {"SystemOpStatus":{"Update":{"A":"D","B":"B"}}}
+[11:08:19.663][D][can641_raw:822]: RX: 21 0A 30 00 0E 00 00 00 
+[11:08:19.663][D][can641_raw:822]: RX: 00 7B 22 41 63 6B 22 3A 
+[11:08:19.680][D][can641_raw:822]: RX: 11 22 32 30 30 22 7D 00 
+[11:08:19.766][S][text_sensor]: 'Last JSON 649' >> '{"SystemOpStatus":{"Update":{"A":"D","B":"B"}}}'
+[11:08:19.767][S][climate]: 'Trane Climate' >>
+[11:08:19.767][S][climate]:   Mode: COOL
+[11:08:19.767][S][climate]:   Fan Mode: ON
+[11:08:19.767][S][climate]:   Current Temperature: 22.78°C
+[11:08:19.767][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:19.767][S][text_sensor]: 'System Mode' >> 'cool'
+[11:08:20.382][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:20.496][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:20.496][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:20.496][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:20.567][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:20.671][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:20.671][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:21.033][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:21.034][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:21.034][S][climate]: 'Trane Climate' >>
+[11:08:21.034][S][climate]:   Mode: COOL
+[11:08:21.034][S][climate]:   Fan Mode: ON
+[11:08:21.034][S][climate]:   Current Temperature: 22.78°C
+[11:08:21.034][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:21.034][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:21.640][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:21.776][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:22.458][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:22.663][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:22.678][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:22.678][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:22.679][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:22.679][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:23.073][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:23.073][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:23.689][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:24.344][S][climate]: 'Trane Climate' >>
+[11:08:24.344][S][climate]:   Mode: COOL
+[11:08:24.344][S][climate]:   Fan Mode: ON
+[11:08:24.344][S][climate]:   Current Temperature: 22.78°C
+[11:08:24.344][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:24.344][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:24.344][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:24.598][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:24.700][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:24.700][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:24.829][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:24.830][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:25.050][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:25.502][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:25.502][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:26.146][S][climate]: 'Trane Climate' >>
+[11:08:26.146][S][climate]:   Mode: COOL
+[11:08:26.146][S][climate]:   Fan Mode: ON
+[11:08:26.146][S][climate]:   Current Temperature: 22.78°C
+[11:08:26.146][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:26.146][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:26.558][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:26.813][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:26.813][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:26.813][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:26.813][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:26.949][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:26.949][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:27.128][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:27.128][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:27.665][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:28.557][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:28.735][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:28.743][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:28.743][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:29.117][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:29.117][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:29.117][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:29.117][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:29.365][S][climate]: 'Trane Climate' >>
+[11:08:29.365][S][climate]:   Mode: COOL
+[11:08:29.365][S][climate]:   Fan Mode: ON
+[11:08:29.365][S][climate]:   Current Temperature: 22.78°C
+[11:08:29.365][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:29.366][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:29.614][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:30.456][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:30.457][S][sensor]: 'Temp Sensor 2' >> 92.6 °F
+[11:08:30.777][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:30.777][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:30.777][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:31.056][S][climate]: 'Trane Climate' >>
+[11:08:31.056][S][climate]:   Mode: COOL
+[11:08:31.056][S][climate]:   Fan Mode: ON
+[11:08:31.056][S][climate]:   Current Temperature: 22.78°C
+[11:08:31.056][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:31.056][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:31.056][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:31.056][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:31.192][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:31.193][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:31.605][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:31.789][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:32.493][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:32.667][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:32.846][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:32.846][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:33.202][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:33.202][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:33.380][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:33.380][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:34.376][S][climate]: 'Trane Climate' >>
+[11:08:34.376][S][climate]:   Mode: COOL
+[11:08:34.376][S][climate]:   Fan Mode: ON
+[11:08:34.376][S][climate]:   Current Temperature: 22.78°C
+[11:08:34.376][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:34.377][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:34.482][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:34.674][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:34.773][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:34.774][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:35.121][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:35.121][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:35.444][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:35.444][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:35.444][S][sensor]: 'Temp Sensor 2' >> 92.5 °F
+[11:08:35.594][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:36.078][S][climate]: 'Trane Climate' >>
+[11:08:36.078][S][climate]:   Mode: COOL
+[11:08:36.078][S][climate]:   Fan Mode: ON
+[11:08:36.078][S][climate]:   Current Temperature: 22.78°C
+[11:08:36.078][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:36.078][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:36.591][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:36.591][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:36.707][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:36.777][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:36.777][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:36.777][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:37.136][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:37.604][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:37.604][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:38.509][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:38.510][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:38.710][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:38.809][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:38.809][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:39.246][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:39.346][S][climate]: 'Trane Climate' >>
+[11:08:39.346][S][climate]:   Mode: COOL
+[11:08:39.346][S][climate]:   Fan Mode: ON
+[11:08:39.346][S][climate]:   Current Temperature: 22.78°C
+[11:08:39.346][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:39.346][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:39.763][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:39.764][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:40.585][S][sensor]: 'Temp Sensor 2' >> 92.5 °F
+[11:08:40.585][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:40.585][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:40.787][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:40.833][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:40.833][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:41.071][S][climate]: 'Trane Climate' >>
+[11:08:41.071][S][climate]:   Mode: COOL
+[11:08:41.071][S][climate]:   Fan Mode: ON
+[11:08:41.071][S][climate]:   Current Temperature: 22.78°C
+[11:08:41.071][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:41.071][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:41.177][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:41.177][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:41.815][S][sensor]: 'Temp Sensor 1' >> 93.6 °F
+[11:08:41.815][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:41.815][S][sensor]: 'Indoor Temp 2' >> 35.9 °F
+[11:08:42.632][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:42.633][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:42.836][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:42.853][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:42.853][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:43.182][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:43.378][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:43.379][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:44.372][S][climate]: 'Trane Climate' >>
+[11:08:44.372][S][climate]:   Mode: COOL
+[11:08:44.372][S][climate]:   Fan Mode: ON
+[11:08:44.372][S][climate]:   Current Temperature: 22.78°C
+[11:08:44.372][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:44.372][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:44.597][S][sensor]: 'Refrigerant Pressure' >> nan PSI
+[11:08:44.597][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:44.745][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:44.850][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:44.850][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:44.850][S][sensor]: 'Outdoor Coil Temp' >> nan °F
+[11:08:44.974][S][sensor]: 'Outdoor Air Temp' >> nan °F
+[11:08:45.249][S][sensor]: 'Compressor Demand' >> nan %
+[11:08:45.250][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:45.250][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:45.424][S][sensor]: 'Weather Humidity' >> nan %
+[11:08:45.424][S][sensor]: 'Discharge Temp' >> nan °F
+[11:08:45.424][S][sensor]: 'Temp Sensor 2' >> 92.5 °F
+[11:08:45.424][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:45.425][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:45.707][S][sensor]: 'Suction Temp' >> nan °F
+[11:08:45.874][S][sensor]: 'Heat Exchanger Temp' >> nan °F
+[11:08:45.874][S][sensor]: 'Temp Sensor 2' >> nan °F
+[11:08:46.022][S][sensor]: 'Supply Air Temp' >> nan °F
+[11:08:46.023][S][climate]: 'Trane Climate' >>
+[11:08:46.023][S][climate]:   Mode: COOL
+[11:08:46.023][S][climate]:   Fan Mode: ON
+[11:08:46.023][S][climate]:   Current Temperature: 22.78°C
+[11:08:46.023][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:46.023][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:46.023][S][sensor]: 'Temp Sensor 3' >> nan °F
+[11:08:46.150][S][sensor]: 'Compressor Frequency' >> nan Hz
+[11:08:46.697][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:46.697][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:46.697][S][sensor]: 'Temp Sensor 1' >> nan °F
+[11:08:46.873][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:46.873][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:08:46.873][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:46.873][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:47.231][S][sensor]: 'System Demand Percent' >> nan %
+[11:08:47.231][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:47.232][S][sensor]: 'Indoor Blower Speed' >> nan %
+[11:08:47.232][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:47.418][S][sensor]: 'Room Temperature' >> nan °F
+[11:08:47.765][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:47.766][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:47.780][S][sensor]: 'SC360 Outdoor Temp' >> nan °F
+[11:08:47.787][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:47.944][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:48.678][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:48.678][S][sensor]: 'Heat Exchanger Temp' >> 66.2 °F
+[11:08:48.678][S][sensor]: 'Indoor Humidity' >> nan %
+[11:08:48.953][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:48.954][S][sensor]: 'Indoor Temp 2' >> nan °F
+[11:08:49.177][S][sensor]: 'Indoor Temp 1' >> nan °F
+[11:08:49.270][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:49.270][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:49.383][S][climate]: 'Trane Climate' >>
+[11:08:49.383][S][climate]:   Mode: COOL
+[11:08:49.383][S][climate]:   Fan Mode: ON
+[11:08:49.383][S][climate]:   Current Temperature: 22.78°C
+[11:08:49.383][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:49.384][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:49.822][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:49.822][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:49.836][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:49.914][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:50.423][S][sensor]: 'Heat Exchanger Temp' >> 66.3 °F
+[11:08:50.565][S][sensor]: 'Temp Sensor 2' >> 92.5 °F
+[11:08:50.565][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:50.926][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:51.104][S][climate]: 'Trane Climate' >>
+[11:08:51.104][S][climate]:   Mode: COOL
+[11:08:51.104][S][climate]:   Fan Mode: ON
+[11:08:51.104][S][climate]:   Current Temperature: 22.78°C
+[11:08:51.104][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:51.104][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:51.287][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:51.288][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:51.820][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:08:51.832][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:51.997][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:51.997][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:51.997][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:52.359][S][sensor]: 'Heat Exchanger Temp' >> 66.3 °F
+[11:08:52.711][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:52.924][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:53.290][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:53.290][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:53.904][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:53.923][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:54.036][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:54.037][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:54.407][S][sensor]: 'Heat Exchanger Temp' >> 66.3 °F
+[11:08:54.408][S][climate]: 'Trane Climate' >>
+[11:08:54.408][S][climate]:   Mode: COOL
+[11:08:54.408][S][climate]:   Fan Mode: ON
+[11:08:54.408][S][climate]:   Current Temperature: 22.78°C
+[11:08:54.408][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:54.408][S][sensor]: 'Cool Setpoint Zone 1' >> 73 °F
+[11:08:54.631][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:55.008][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:55.266][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:55.266][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:55.517][S][sensor]: 'Temp Sensor 2' >> 92.5 °F
+[11:08:55.829][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:55.926][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:56.064][S][climate]: 'Trane Climate' >>
+[11:08:56.064][S][climate]:   Mode: COOL
+[11:08:56.064][S][climate]:   Fan Mode: ON
+[11:08:56.064][S][climate]:   Current Temperature: 22.78°C
+[11:08:56.064][S][climate]:   Target Temperature: Low: 15.56°C High: 22.78°C
+[11:08:56.065][S][sensor]: 'Heat Setpoint Zone 1' >> 60 °F
+[11:08:56.178][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:56.178][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:56.339][S][sensor]: 'Heat Exchanger Temp' >> 66.3 °F
+[11:08:56.667][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI
+[11:08:56.869][S][sensor]: 'Temp Sensor 1' >> 93.7 °F
+[11:08:56.947][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:57.297][S][sensor]: 'Outdoor Coil Temp' >> 55.0 °F
+[11:08:57.297][S][sensor]: 'Discharge Temp' >> 184.4 °F
+[11:08:57.942][D][can380:899]: 0x380: -99.0 / 61.1
+[11:08:57.950][S][sensor]: 'Outdoor Air Temp' >> 61.1 °F
+[11:08:57.950][S][sensor]: 'Suction Temp' >> 60.9 °F
+[11:08:58.319][S][sensor]: 'Indoor Temp 1' >> 23.3 °F
+[11:08:58.319][S][sensor]: 'Indoor Temp 2' >> 35.8 °F
+[11:08:58.319][S][sensor]: 'Heat Exchanger Temp' >> 66.3 °F
+[11:08:58.708][S][sensor]: 'Refrigerant Pressure' >> 243.0 PSI

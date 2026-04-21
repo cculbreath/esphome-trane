@@ -4,6 +4,8 @@ An [ESPHome](https://esphome.io) component for monitoring and controlling Trane 
 
 Inspired by and structurally modeled after [esphome-econet](https://github.com/esphome-econet/esphome-econet).
 
+> **Fork status (2026-04):** This fork rewrites the outbound CAN protocol against captured UX360 traffic. The upstream's transmit path (SpOverride Put, SystemMode Put) was non-functional — malformed framing caused the SC360 to silently discard commands and in some cases crash-reboot. This fork sends the correct wire format and accepts commands end-to-end (verified: UX360 display updates within 20 ms of an HA mode or setpoint change). See [`PROTOCOL.md`](PROTOCOL.md) for the full frame-level protocol description and [`docs/captures/`](docs/captures/) for reference traffic.
+
 ---
 
 ## Overview
@@ -189,7 +191,7 @@ Cross-referenced against the Trane Home app activity log:
 | idle | `HcStatus=4`, `SystemOpStatus.C` = `--` |
 | waiting | `SystemOpStatus.A` = `E` (post-alarm standby/lockout) |
 
-App "Run mode" maps to `SpOverride.HoldType`: hold temp = `2`, run schedule = `0`.
+App "Run mode" maps to `SpOverride.HoldType`: permanent hold = `1` (what the UX360 emits when you tap a setpoint), schedule = `0`. (Upstream README said `2` for hold — empirically the SC360 ignores commands with `HoldType=2`.)
 
 App "Compressor speed" maps directly to `OdStatus.B` (0–100%).
 
@@ -212,12 +214,24 @@ Adjust these in `esphome-trane.yaml` under `set_preset_action` to match your sch
 
 ---
 
+## Mode command details
+
+Mode changes use `ZoneSettings Put` (per-zone), not `SystemMode Put` (which does not exist on this bus). `ZoneMode` values — verified empirically by physically cycling modes on the UX360 while capturing `0x641` traffic:
+
+| `ZoneMode` | UX360 label         | HA ClimateMode          |
+|-----------:|---------------------|-------------------------|
+| `0`        | Off                 | `OFF`                   |
+| `1`        | Heat/Cool (Auto)    | `HEAT_COOL`             |
+| `2`        | Heat                | `HEAT`                  |
+| `3`        | Cool                | `COOL`                  |
+
+Full frame format in [`PROTOCOL.md`](PROTOCOL.md#zonesettings-put--change-operating-mode).
+
 ## Known Limitations
 
-- **Fan-only mode** maps to system off (`C`) on the CAN bus — no dedicated fan-only command has been observed yet
-- **Heat_cool (auto) mode** sends heat (`A`) — the SC360 manages its own staging between HP and gas automatically
-- **Zone 2–6 setpoints** are observable but write support is not yet implemented
-- **`0x380` byte layout** has two floats; only the second (outdoor air temp) is confirmed — the first is logged at DEBUG for further investigation
+- **Fan-only mode** is not mapped — no dedicated fan-only `ZoneMode` value observed. Blower-only behavior is inferred from `IndoorStatus.D` during idle periods.
+- **Zone 2–6 setpoints** are observable but write support is only implemented for zone 1.
+- **`0x380` byte layout** has two floats; only the second (outdoor air temp) is confirmed — the first is always `-99.0` (sentinel).
 
 ---
 
