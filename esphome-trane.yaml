@@ -40,11 +40,12 @@ api:
       then:
         - script.execute:
             id: can_transmit_json
+            trailer: 0xCD
             payload: !lambda |-
               char buf[128];
               snprintf(buf, sizeof(buf),
-                "{\"SpOverride\":{\"Put\":{\"1\":{\"Hsp\":\"%.0f\",\"Csp\":\"%.0f\",\"HoldType\":\"2\",\"Source\":\"1\"}}}}",
-                target_temp_low, target_temp_high);
+                "{\"SpOverride\":{\"Put\":{\"1\":{\"Csp\":\"%.0f\",\"Hsp\":\"%.0f\",\"HoldType\":\"1\",\"Source\":\"1\"}}}}",
+                target_temp_high, target_temp_low);
               return std::string(buf);
 
     - service: set_mode
@@ -53,13 +54,17 @@ api:
       then:
         - script.execute:
             id: can_transmit_json
+            trailer: 0xC5
             payload: !lambda |-
-              std::string m = "C";
-              if (mode == "heat") m = "A";
-              else if (mode == "cool") m = "B";
-              char buf[64];
+              // ZoneSettings.ZoneMode: 0=Off, 1=Heat/Cool (Auto), 2=Heat, 3=Cool
+              // (verified empirically by cycling modes on the UX360)
+              std::string m = "0";
+              if (mode == "heat") m = "2";
+              else if (mode == "cool") m = "3";
+              else if (mode == "heat_cool" || mode == "auto") m = "1";
+              char buf[80];
               snprintf(buf, sizeof(buf),
-                "{\"SystemMode\":{\"Put\":{\"B\":\"%s\"}}}",
+                "{\"ZoneSettings\":{\"Put\":{\"1\":{\"ZoneMode\":\"%s\"}}}}",
                 m.c_str());
               return std::string(buf);
 
@@ -97,29 +102,40 @@ script:
   - id: can_transmit_json
     parameters:
       payload: string
+      trailer: int      # per-message-type byte observed on bus (0xCD SpOverride Put, 0xC5 ZoneSettings Put)
     then:
       - lambda: |-
-          int total = payload.size();
-          // Header frame: 0xC2, length LE uint32, padding
+          // Declared length includes a trailing null terminator (observed in
+          // SC360 Ack: len=0x0E for 13-char "{\"Ack\":\"200\"}").
+          int content_len = payload.size();
+          int total = content_len + 1;
+          // Header: 0xC2 (msg type), 0A 30 00 (protocol constant observed on bus),
+          // length at byte 4, padding. Matches SC360/UX360 wire format.
           std::vector<uint8_t> f0 = {
             0xC2,
+            0x0A, 0x30, 0x00,
             (uint8_t)(total & 0xFF),
-            (uint8_t)((total >> 8) & 0xFF),
-            0x00, 0x00, 0x00, 0x00, 0x00
+            0x00, 0x00, 0x00
           };
           id(hvac_can).send_data(0x641, false, f0);
           delay(2);
           // Continuation and last frames
           int offset = 0;
           uint8_t seq = 1;
-          while (offset < total) {
-            int remaining = total - offset;
+          while (offset < content_len) {
+            int remaining = content_len - offset;
             std::vector<uint8_t> frame(8, 0);
             if (remaining <= 7) {
-              frame[0] = 0x80 | (uint8_t)(remaining + 1);
+              // Last-frame marker = 0x80 | next_sequence_number (observed
+              // on bus: SC360 + UX360 both use this scheme).
+              frame[0] = 0x80 | seq;
               for (int i = 0; i < remaining; i++)
                 frame[i + 1] = payload[offset + i];
               id(hvac_can).send_data(0x641, false, frame);
+              delay(2);
+              // Trailer — message-type dependent byte observed on bus.
+              std::vector<uint8_t> tail = {(uint8_t)trailer, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+              id(hvac_can).send_data(0x641, false, tail);
               break;
             } else {
               frame[0] = seq++;
@@ -470,31 +486,38 @@ climate:
     set_mode_action:
       - script.execute:
           id: can_transmit_json
+          trailer: 0xC5
           payload: !lambda |-
-            std::string m;
-            if (mode == climate::CLIMATE_MODE_HEAT)      m = "A";
-            else if (mode == climate::CLIMATE_MODE_COOL) m = "B";
-            else                                          m = "C";
-            char buf[64];
+            // ZoneSettings.ZoneMode: 0=Off, 1=Heat/Cool (Auto), 2=Heat, 3=Cool
+            // (verified empirically by cycling modes on the UX360)
+            std::string m = "0";
+            if (mode == climate::CLIMATE_MODE_HEAT)           m = "2";
+            else if (mode == climate::CLIMATE_MODE_COOL)      m = "3";
+            else if (mode == climate::CLIMATE_MODE_HEAT_COOL) m = "1";
+            char buf[80];
             snprintf(buf, sizeof(buf),
-              "{\"SystemMode\":{\"Put\":{\"B\":\"%s\"}}}",
+              "{\"ZoneSettings\":{\"Put\":{\"1\":{\"ZoneMode\":\"%s\"}}}}",
               m.c_str());
             return std::string(buf);
 
     set_temperature_action:
       - script.execute:
           id: can_transmit_json
+          trailer: 0xCD
           payload: !lambda |-
+            id(hsp_zone1) = hsp_f;
+            id(csp_zone1) = csp_f;
             char buf[160];
             snprintf(buf, sizeof(buf),
-              "{\"SpOverride\":{\"Put\":{\"1\":{\"Hsp\":\"%.0f\",\"Csp\":\"%.0f\","
-              "\"HoldType\":\"2\",\"Source\":\"1\"}}}}",
-              hsp_f, csp_f);
+              "{\"SpOverride\":{\"Put\":{\"1\":{\"Csp\":\"%.0f\",\"Hsp\":\"%.0f\","
+              "\"HoldType\":\"1\",\"Source\":\"1\"}}}}",
+              csp_f, hsp_f);
             return std::string(buf);
 
     set_preset_action:
       - script.execute:
           id: can_transmit_json
+          trailer: 0xCD
           payload: !lambda |-
             float hsp, csp;
             if (preset == climate::CLIMATE_PRESET_HOME) {
@@ -508,11 +531,13 @@ climate:
             } else {
               hsp = id(hsp_zone1); csp = id(csp_zone1);
             }
+            id(hsp_zone1) = hsp;
+            id(csp_zone1) = csp;
             char buf[160];
             snprintf(buf, sizeof(buf),
-              "{\"SpOverride\":{\"Put\":{\"1\":{\"Hsp\":\"%.0f\",\"Csp\":\"%.0f\","
-              "\"HoldType\":\"2\",\"Source\":\"1\"}}}}",
-              hsp, csp);
+              "{\"SpOverride\":{\"Put\":{\"1\":{\"Csp\":\"%.0f\",\"Hsp\":\"%.0f\","
+              "\"HoldType\":\"1\",\"Source\":\"1\"}}}}",
+              csp, hsp);
             return std::string(buf);
 
 # ---------------------------------------------------------------------------
@@ -549,29 +574,38 @@ canbus:
                 std::string j = id(buf_649);
                 id(last_json_649).publish_state(j);
                 ESP_LOGD("can649", "JSON: %s", j.c_str());
-                // Hsp
-                auto p = j.find("\"Hsp\":\"");
-                if (p != std::string::npos) {
-                  p += 7;
-                  auto e = j.find("\"", p);
-                  if (e != std::string::npos)
-                    id(hsp_zone1) = atof(j.substr(p, e-p).c_str());
-                }
-                // Csp
-                auto cp = j.find("\"Csp\":\"");
-                if (cp != std::string::npos) {
-                  cp += 7;
-                  auto e = j.find("\"", cp);
-                  if (e != std::string::npos)
-                    id(csp_zone1) = atof(j.substr(cp, e-cp).c_str());
-                }
-                // Sync climate setpoints whenever either changes
-                if (j.find("\"Hsp\":\"") != std::string::npos ||
-                    j.find("\"Csp\":\"") != std::string::npos) {
-                  auto *cl = id(trane_climate);
-                  cl->target_temperature_low  = id(hsp_zone1);
-                  cl->target_temperature_high = id(csp_zone1);
-                  cl->publish_state();
+                // Hsp/Csp — only from SpOverride or ZoneStatus zone 1
+                auto sp_pos = j.find("\"SpOverride\"");
+                if (sp_pos == std::string::npos) sp_pos = j.find("\"ZoneStatus\"");
+                if (sp_pos != std::string::npos) {
+                  auto z1 = j.find("\"1\":{", sp_pos);
+                  if (z1 != std::string::npos) {
+                    bool changed = false;
+                    auto p = j.find("\"Hsp\":\"", z1);
+                    if (p != std::string::npos) {
+                      p += 7;
+                      auto e = j.find("\"", p);
+                      if (e != std::string::npos) {
+                        id(hsp_zone1) = atof(j.substr(p, e-p).c_str());
+                        changed = true;
+                      }
+                    }
+                    auto cp = j.find("\"Csp\":\"", z1);
+                    if (cp != std::string::npos) {
+                      cp += 7;
+                      auto e = j.find("\"", cp);
+                      if (e != std::string::npos) {
+                        id(csp_zone1) = atof(j.substr(cp, e-cp).c_str());
+                        changed = true;
+                      }
+                    }
+                    if (changed) {
+                      auto *cl = id(trane_climate);
+                      cl->target_temperature_low  = (id(hsp_zone1) - 32.0f) * 5.0f / 9.0f;
+                      cl->target_temperature_high = (id(csp_zone1) - 32.0f) * 5.0f / 9.0f;
+                      cl->publish_state();
+                    }
+                  }
                 }                // SystemOpStatus
                 auto sos = j.find("\"SystemOpStatus\"");
                 if (sos != std::string::npos) {
@@ -623,29 +657,35 @@ canbus:
                     }
                   }
                 }
-                // ZoneStatus
-                auto ht = j.find("\"HoldText\":\"");
-                if (ht != std::string::npos) {
-                  ht += 12;
-                  auto e = j.find("\"", ht);
-                  if (e != std::string::npos)
-                    id(hold_text).publish_state(j.substr(ht, e-ht));
-                }
-                auto h_pos = j.find("\"H\":\"");
-                if (h_pos != std::string::npos) {
-                  h_pos += 5;
-                  auto e = j.find("\"", h_pos);
-                  if (e != std::string::npos) {
-                    float t = atof(j.substr(h_pos, e-h_pos).c_str());
-                    if (t > 32 && t < 110) id(room_temp).publish_state(t);
+                // ZoneStatus — scope to zone 1
+                auto zs_pos = j.find("\"ZoneStatus\"");
+                if (zs_pos != std::string::npos) {
+                  auto zs_z1 = j.find("\"1\":{", zs_pos);
+                  if (zs_z1 != std::string::npos) {
+                    auto ht = j.find("\"HoldText\":\"", zs_z1);
+                    if (ht != std::string::npos) {
+                      ht += 12;
+                      auto e = j.find("\"", ht);
+                      if (e != std::string::npos)
+                        id(hold_text).publish_state(j.substr(ht, e-ht));
+                    }
+                    auto h_pos = j.find("\"H\":\"", zs_z1);
+                    if (h_pos != std::string::npos) {
+                      h_pos += 5;
+                      auto e = j.find("\"", h_pos);
+                      if (e != std::string::npos) {
+                        float t = atof(j.substr(h_pos, e-h_pos).c_str());
+                        if (t > 32 && t < 110) id(room_temp).publish_state(t);
+                      }
+                    }
+                    auto hcs = j.find("\"HcStatus\":\"", zs_z1);
+                    if (hcs != std::string::npos) {
+                      hcs += 12;
+                      auto e = j.find("\"", hcs);
+                      if (e != std::string::npos)
+                        id(hc_status).publish_state(j.substr(hcs, e-hcs));
+                    }
                   }
-                }
-                auto hcs = j.find("\"HcStatus\":\"");
-                if (hcs != std::string::npos) {
-                  hcs += 12;
-                  auto e = j.find("\"", hcs);
-                  if (e != std::string::npos)
-                    id(hc_status).publish_state(j.substr(hcs, e-hcs));
                 }
                 // OdStatus
                 auto cdp = j.find("\"CompDemandPercent\":\"");
@@ -734,15 +774,30 @@ canbus:
                       id(indoor_unit_state).publish_state(j.substr(id_pos, e-id_pos));
                   }
                 }
-                // ZoneSettings
+                // ZoneSettings — zone 1 only. ZoneMode is the CONFIGURED
+                // mode (what the user set); SystemOpStatus.B is the
+                // OPERATING state (what the system is currently doing).
+                // Mapping (verified empirically on the UX360):
+                //   0=Off, 1=Heat/Cool (Auto), 2=Heat, 3=Cool
                 auto zs = j.find("\"ZoneSettings\"");
                 if (zs != std::string::npos) {
-                  auto zm = j.find("\"ZoneMode\":\"", zs);
-                  if (zm != std::string::npos) {
-                    zm += 12;
-                    auto e = j.find("\"", zm);
-                    if (e != std::string::npos)
-                      id(zone_mode).publish_state(j.substr(zm, e-zm));
+                  auto zs_z1 = j.find("\"1\":{", zs);
+                  if (zs_z1 != std::string::npos) {
+                    auto zm = j.find("\"ZoneMode\":\"", zs_z1);
+                    if (zm != std::string::npos) {
+                      zm += 12;
+                      auto e = j.find("\"", zm);
+                      if (e != std::string::npos) {
+                        std::string zmode = j.substr(zm, e-zm);
+                        id(zone_mode).publish_state(zmode);
+                        const char *mtext = nullptr;
+                        if (zmode == "0") mtext = "off";
+                        else if (zmode == "1") mtext = "heat_cool";
+                        else if (zmode == "2") mtext = "heat";
+                        else if (zmode == "3") mtext = "cool";
+                        if (mtext) id(system_mode).publish_state(mtext);
+                      }
+                    }
                   }
                 }
                 id(buf_649) = "";

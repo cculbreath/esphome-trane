@@ -61,12 +61,15 @@ void TraneClimate::setup() {
     }
   });
 
-  // Mode text sensor — maps system_mode values back to climate modes
+  // Mode text sensor — maps ZoneSettings.ZoneMode (as text) to climate modes.
+  // ZoneMode is the configured mode (set by user), not the operating state.
   mode_sensor_->add_on_state_callback([this](const std::string &state) {
     if (state == "heat")
       this->mode = climate::CLIMATE_MODE_HEAT;
     else if (state == "cool")
       this->mode = climate::CLIMATE_MODE_COOL;
+    else if (state == "heat_cool" || state == "auto")
+      this->mode = climate::CLIMATE_MODE_HEAT_COOL;
     else if (state == "off")
       this->mode = climate::CLIMATE_MODE_OFF;
     this->publish_state();
