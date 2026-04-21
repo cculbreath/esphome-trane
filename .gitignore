@@ -3,3 +3,10 @@
 # You can modify this file to suit your needs.
 /.esphome/
 /secrets.yaml
+/custom-esphome-trane.yaml
+/custom-secrets.yaml
+/trane-capture-*.log
+
+# Python bytecode cache (ESPHome codegen artifacts)
+__pycache__/
+*.pyc
