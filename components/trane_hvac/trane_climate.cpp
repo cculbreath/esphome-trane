@@ -78,14 +78,22 @@ void TraneClimate::setup() {
   // Demand stage sensor — maps SystemOpStatus.C to ClimateAction
   // Known stage strings from CAN bus observations:
   //   "--"          = idle between cycles
-  //   "HP Stage 1"  = heat pump low stage
-  //   "HP Stage 2"  = heat pump high stage
-  //   "HP1+ID1"     = heat pump stage 1 + induced draft stage 1
-  //   "HP1+ID2"     = heat pump stage 1 + induced draft stage 2
-  //   "HP2+ID1"     = heat pump stage 2 + induced draft stage 1 (defrost/aux)
-  //   "HP2+ID2"     = heat pump stage 2 + induced draft stage 2 (defrost/aux)
+  //   "AC Stage 1"  = straight-AC / HP cool-mode stage 1  (seen on UX360 + variable-speed HP)
+  //   "AC Stage 2"  = straight-AC / HP cool-mode stage 2
+  //   "HP Stage 1"  = heat pump heat-mode stage 1
+  //   "HP Stage 2"  = heat pump heat-mode stage 2
+  //   "HP1+ID1"     = heat pump heat stage 1 + induced draft stage 1
+  //   "HP1+ID2"     = heat pump heat stage 1 + induced draft stage 2
+  //   "HP2+ID1"     = heat pump heat stage 2 + induced draft stage 1 (defrost/aux)
+  //   "HP2+ID2"     = heat pump heat stage 2 + induced draft stage 2 (defrost/aux)
   //   "ID Stage 1"  = induced draft / gas stage 1 (furnace only)
   //   "ID Stage 2"  = induced draft / gas stage 2 (furnace only)
+  //
+  // On Trane variable-speed HPs the SC360 distinguishes the compressor's
+  // role by the prefix: "AC" = cooling (reversing valve in cool position),
+  // "HP" = heating. So "AC..." is unambiguously cooling; "HP..."/"ID..."
+  // are usually heating but we still disambiguate by configured mode in
+  // case a dual-fuel / cool-only install behaves differently.
   if (demand_sensor_ != nullptr) {
     demand_sensor_->add_on_state_callback([this](const std::string &state) {
       if (this->mode == climate::CLIMATE_MODE_OFF) {
@@ -94,11 +102,11 @@ void TraneClimate::setup() {
         // "--" means compressor idle — could still be fan running
         // action will be updated by indoor_unit_state if blower is active
         this->action = climate::CLIMATE_ACTION_IDLE;
-      } else if (state.find("Cool") != std::string::npos) {
+      } else if (state.find("AC") != std::string::npos ||
+                 state.find("Cool") != std::string::npos) {
         this->action = climate::CLIMATE_ACTION_COOLING;
       } else if (state.find("HP") != std::string::npos ||
                  state.find("ID") != std::string::npos) {
-        // HP Stage 1, HP Stage 2, HP1+ID1, HP1+ID2, HP2+ID1, HP2+ID2, ID Stage 1, ID Stage 2
         this->action = (this->mode == climate::CLIMATE_MODE_COOL)
                          ? climate::CLIMATE_ACTION_COOLING
                          : climate::CLIMATE_ACTION_HEATING;

@@ -150,6 +150,12 @@ script:
 
 # ---------------------------------------------------------------------------
 # Numeric sensors
+#
+# All of the template sensors below use `lambda: "return {};"`. They are
+# push-only — the CAN parser publishes values via `id(x).publish_state(v)`.
+# Returning an empty optional from the periodic poll preserves the last
+# pushed value; the previous pattern (`return NAN;`) clobbered every CAN
+# update to `unknown` on the next `update_interval` tick.
 # ---------------------------------------------------------------------------
 sensor:
 
@@ -161,7 +167,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_thermostat
 
@@ -172,7 +178,7 @@ sensor:
     device_class: humidity
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_thermostat
 
@@ -205,7 +211,7 @@ sensor:
     device_class: humidity
     state_class: measurement
     accuracy_decimals: 0
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_thermostat
 
@@ -216,7 +222,7 @@ sensor:
     unit_of_measurement: "%"
     state_class: measurement
     accuracy_decimals: 0
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_sc360
 
@@ -227,7 +233,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_sc360
 
@@ -238,7 +244,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_sc360
 
@@ -249,7 +255,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_sc360
 
@@ -260,7 +266,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_sc360
 
@@ -272,7 +278,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_air_handler
 
@@ -283,7 +289,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_air_handler
 
@@ -294,7 +300,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_air_handler
 
@@ -305,7 +311,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_air_handler
 
@@ -315,7 +321,7 @@ sensor:
     unit_of_measurement: "%"
     state_class: measurement
     accuracy_decimals: 0
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_air_handler
 
@@ -327,7 +333,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -338,7 +344,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -349,7 +355,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -360,7 +366,7 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -370,7 +376,7 @@ sensor:
     unit_of_measurement: "PSI"
     state_class: measurement
     accuracy_decimals: 1
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -380,7 +386,7 @@ sensor:
     unit_of_measurement: "%"
     state_class: measurement
     accuracy_decimals: 0
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
@@ -390,7 +396,7 @@ sensor:
     unit_of_measurement: "Hz"
     state_class: measurement
     accuracy_decimals: 0
-    lambda: "return NAN;"
+    lambda: "return {};"
     update_interval: 60s
     device_id: dev_heat_pump
 
