@@ -546,8 +546,10 @@ climate:
 canbus:
   - platform: esp32_can
     id: hvac_can
-    tx_pin: GPIO5
-    rx_pin: GPIO6
+    # Pins REVERSED from upstream dewbot6 default (GPIO5/GPIO6) — Christopher's
+    # AtomS3 Lite is wired G6→CTX, G5→CRX because it was easier to route.
+    tx_pin: GPIO6
+    rx_pin: GPIO5
     bit_rate: 50kbps
     can_id: 1
 
@@ -609,18 +611,10 @@ canbus:
                 }                // SystemOpStatus
                 auto sos = j.find("\"SystemOpStatus\"");
                 if (sos != std::string::npos) {
-                  auto b_pos = j.find("\"B\":\"", sos);
-                  if (b_pos != std::string::npos) {
-                    b_pos += 5;
-                    auto e = j.find("\"", b_pos);
-                    if (e != std::string::npos) {
-                      std::string bval = j.substr(b_pos, e-b_pos);
-                      std::string mode = bval == "A" ? "heat" :
-                                         bval == "B" ? "cool" :
-                                         bval == "C" ? "off" : bval;
-                      id(system_mode).publish_state(mode);
-                    }
-                  }
+                  // SystemOpStatus.B is OPERATING state (A=heating, B=cooling,
+                  // C=idle). Do NOT write to system_mode — climate.mode should
+                  // reflect the user-CONFIGURED mode from ZoneSettings.ZoneMode
+                  // (parsed below). Operating state drives hvac_action.
                   auto c_pos = j.find("\"C\":\"", sos);
                   if (c_pos != std::string::npos) {
                     c_pos += 5;
