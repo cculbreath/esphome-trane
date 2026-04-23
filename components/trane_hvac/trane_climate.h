@@ -35,6 +35,13 @@ class TraneClimate : public climate::Climate, public Component {
   climate::ClimateTraits traits() override;
   void control(const climate::ClimateCall &call) override;
 
+  // Computes the ClimateAction for a given configured mode and the
+  // demand-stage text. Shared by the demand callback (reacts to CAN pushes)
+  // and the mode callback (re-seeds after mode change without waiting for
+  // the next demand broadcast — see the comment in setup()).
+  climate::ClimateAction compute_action_(climate::ClimateMode mode,
+                                         const std::string &demand) const;
+
   sensor::Sensor *current_temp_sensor_{nullptr};
   sensor::Sensor *heat_setpoint_sensor_{nullptr};
   sensor::Sensor *cool_setpoint_sensor_{nullptr};

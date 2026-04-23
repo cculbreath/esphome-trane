@@ -67,6 +67,14 @@ void TraneClimate::setup() {
 
   // Mode text sensor — maps ZoneSettings.ZoneMode (as text) to climate modes.
   // ZoneMode is the configured mode (set by user), not the operating state.
+  //
+  // The mode callback must also reseed this->action: demand_sensor_ only
+  // publishes on *change*, so a mode transition (e.g. OFF → HEAT_COOL on
+  // first ZoneSettings after boot, or user cycling mode via UX360) leaves
+  // this->action frozen at its previous value until the next demand
+  // broadcast. Observed 2026-04-23: mode went OFF → HEAT_COOL at 07:59:58Z
+  // with demand already at "AC Stage 2"; hvac_action stayed at "off" for
+  // 19 minutes until demand changed. Reseeding here closes that window.
   mode_sensor_->add_on_state_callback([this](const std::string &state) {
     if (state == "heat")
       this->mode = climate::CLIMATE_MODE_HEAT;
@@ -76,47 +84,19 @@ void TraneClimate::setup() {
       this->mode = climate::CLIMATE_MODE_HEAT_COOL;
     else if (state == "off")
       this->mode = climate::CLIMATE_MODE_OFF;
+
+    std::string d = (demand_sensor_ != nullptr && demand_sensor_->has_state())
+                      ? demand_sensor_->state
+                      : std::string();
+    this->action = this->compute_action_(this->mode, d);
     this->publish_state();
   });
 
-  // Demand stage sensor — maps SystemOpStatus.C to ClimateAction
-  // Known stage strings from CAN bus observations:
-  //   "--"          = idle between cycles
-  //   "AC Stage 1"  = straight-AC / HP cool-mode stage 1  (seen on UX360 + variable-speed HP)
-  //   "AC Stage 2"  = straight-AC / HP cool-mode stage 2
-  //   "HP Stage 1"  = heat pump heat-mode stage 1
-  //   "HP Stage 2"  = heat pump heat-mode stage 2
-  //   "HP1+ID1"     = heat pump heat stage 1 + induced draft stage 1
-  //   "HP1+ID2"     = heat pump heat stage 1 + induced draft stage 2
-  //   "HP2+ID1"     = heat pump heat stage 2 + induced draft stage 1 (defrost/aux)
-  //   "HP2+ID2"     = heat pump heat stage 2 + induced draft stage 2 (defrost/aux)
-  //   "ID Stage 1"  = induced draft / gas stage 1 (furnace only)
-  //   "ID Stage 2"  = induced draft / gas stage 2 (furnace only)
-  //
-  // On Trane variable-speed HPs the SC360 distinguishes the compressor's
-  // role by the prefix: "AC" = cooling (reversing valve in cool position),
-  // "HP" = heating. So "AC..." is unambiguously cooling; "HP..."/"ID..."
-  // are usually heating but we still disambiguate by configured mode in
-  // case a dual-fuel / cool-only install behaves differently.
+  // Demand stage sensor — SystemOpStatus.C drives ClimateAction via
+  // compute_action_() (see definition below for the full string-to-action table).
   if (demand_sensor_ != nullptr) {
     demand_sensor_->add_on_state_callback([this](const std::string &state) {
-      if (this->mode == climate::CLIMATE_MODE_OFF) {
-        this->action = climate::CLIMATE_ACTION_OFF;
-      } else if (state == "--" || state.empty()) {
-        // "--" means compressor idle — could still be fan running
-        // action will be updated by indoor_unit_state if blower is active
-        this->action = climate::CLIMATE_ACTION_IDLE;
-      } else if (state.find("AC") != std::string::npos ||
-                 state.find("Cool") != std::string::npos) {
-        this->action = climate::CLIMATE_ACTION_COOLING;
-      } else if (state.find("HP") != std::string::npos ||
-                 state.find("ID") != std::string::npos) {
-        this->action = (this->mode == climate::CLIMATE_MODE_COOL)
-                         ? climate::CLIMATE_ACTION_COOLING
-                         : climate::CLIMATE_ACTION_HEATING;
-      } else {
-        this->action = climate::CLIMATE_ACTION_IDLE;
-      }
+      this->action = this->compute_action_(this->mode, state);
       this->publish_state();
     });
   }
@@ -182,6 +162,36 @@ void TraneClimate::control(const climate::ClimateCall &call) {
     this->publish_state();
     preset_trigger_.trigger(new_preset);
   }
+}
+
+climate::ClimateAction TraneClimate::compute_action_(climate::ClimateMode mode,
+                                                     const std::string &demand) const {
+  // Known demand-stage strings from CAN observations:
+  //   "--"          = compressor idle
+  //   "AC Stage N"  = cooling (reversing valve in cool position) — any N
+  //   "HP Stage N"  = heating via heat pump
+  //   "HPn+IDn"     = heat pump + induced draft (defrost/aux)
+  //   "ID Stage N"  = induced draft / gas only (furnace configs)
+  //
+  // Prefix is authoritative on Trane variable-speed HPs ("AC" = cool,
+  // "HP"/"ID" = heat), but we still cross-check against configured mode
+  // so a cool-only or dual-fuel install behaves sensibly.
+  if (mode == climate::CLIMATE_MODE_OFF)
+    return climate::CLIMATE_ACTION_OFF;
+  if (demand.empty() || demand == "--") {
+    // Compressor idle. Blower-running case (fan-only) is handled by the
+    // indoor_unit_state callback after IDLE is published here.
+    return climate::CLIMATE_ACTION_IDLE;
+  }
+  if (demand.find("AC") != std::string::npos ||
+      demand.find("Cool") != std::string::npos)
+    return climate::CLIMATE_ACTION_COOLING;
+  if (demand.find("HP") != std::string::npos ||
+      demand.find("ID") != std::string::npos)
+    return (mode == climate::CLIMATE_MODE_COOL)
+             ? climate::CLIMATE_ACTION_COOLING
+             : climate::CLIMATE_ACTION_HEATING;
+  return climate::CLIMATE_ACTION_IDLE;
 }
 
 }  // namespace trane_hvac
