@@ -14,6 +14,10 @@ climate::ClimateTraits TraneClimate::traits() {
   auto traits = climate::ClimateTraits();
   traits.set_supports_current_temperature(true);
   traits.set_supports_two_point_target_temperature(true);
+  // Without this, ESPHome's ListEntitiesClimateResponse.supports_action
+  // defaults to false and HA drops the hvac_action attribute regardless
+  // of what the demand-stage callback sets on this->action.
+  traits.set_supports_action(true);
   traits.set_supported_modes({
     climate::CLIMATE_MODE_OFF,
     climate::CLIMATE_MODE_HEAT,
