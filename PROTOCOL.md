@@ -16,22 +16,28 @@ The [upstream repository](https://github.com/dewbot6/esphome-trane) contained a 
 
 ## Observed CAN IDs
 
-| ID      | Sender        | Purpose                                             |
-|---------|---------------|-----------------------------------------------------|
-| `0x649` | SC360         | System broadcast (JSON)                             |
-| `0x641` | SC360, UX360  | Command/response channel (JSON, bidirectional)      |
-| `0x283` | Air handler   | Indoor air temps 1 & 2 (2 × IEEE-754 float, °C)     |
-| `0x308` | Air handler   | Supply air temp, heat exchanger temp (°F)           |
-| `0x380` | Heat pump     | (unknown / −99.0 sentinel), outdoor air temp (°F)   |
-| `0x381` | Heat pump     | Suction temp (°F)                                   |
-| `0x383` | Heat pump     | Discharge temp (°F)                                 |
-| `0x387` | Heat pump     | Outdoor coil temp (°F)                              |
-| `0x38F` | Heat pump     | Refrigerant pressure (PSI)                          |
-| `0x410` | SC360 sensor  | Temp sensor 1 (°F)                                  |
-| `0x430` | SC360 sensor  | Temp sensor 2 (°F)                                  |
-| `0x450` | SC360 sensor  | Temp sensor 3 (°F)                                  |
+| ID      | Sender        | Purpose                                             | HA exposure                                   |
+|---------|---------------|-----------------------------------------------------|-----------------------------------------------|
+| `0x649` | SC360         | System broadcast (JSON)                             | Multiple sensors (see §JSON protocol below)   |
+| `0x641` | SC360, UX360  | Command/response channel (JSON, bidirectional)      | Climate entity commands                       |
+| `0x283` | Air handler   | Indoor air temps 1 & 2 (2 × IEEE-754 float, °C)     | `trane_air_handler_indoor_temp{,_2}`          |
+| `0x308` | Air handler   | Supply air temp, heat exchanger temp (°F)           | `trane_air_handler_supply_air_temp` — **blocked: SC360 installer-menu Supply Air Sensor not enabled** (`supply_air_fault = TA_INV_HI` as of 2026-04-24) |
+| `0x380` | Heat pump     | (unknown / −99.0 sentinel), outdoor air temp (°F)   | `trane_heat_pump_outdoor_air_temp` — **live**, updates on each broadcast |
+| `0x381` | Heat pump     | Suction temp (°F)                                   | `trane_heat_pump_suction_temp`                |
+| `0x383` | Heat pump     | Discharge temp (°F)                                 | `trane_heat_pump_discharge_temp`              |
+| `0x387` | Heat pump     | Outdoor coil temp (°F)                              | `trane_heat_pump_outdoor_coil_temp`           |
+| `0x38F` | Heat pump     | Refrigerant pressure (PSI)                          | `trane_heat_pump_refrigerant_pressure`        |
+| `0x410` | SC360 sensor  | Temp sensor 1 (°F)                                  | Not yet exposed (decoded at CAN level only)   |
+| `0x430` | SC360 sensor  | Temp sensor 2 (°F)                                  | Not yet exposed                               |
+| `0x450` | SC360 sensor  | Temp sensor 3 (°F)                                  | Not yet exposed                               |
 
 Other IDs observed but not decoded yet: `0x5C1`, `0x5C9`, `0x386`, `0x490`.
+
+### Known follow-ups
+
+- **`0x308` Supply/plenum air temp** — firmware + HA entity ready; blocked on SC360 installer-menu toggle so the SC360 publishes valid readings instead of the invalid-sentinel that currently drives `supply_air_fault = TA_INV_HI`. Physical task for the system owner (UX360 installer mode).
+- **`0x410` / `0x430` / `0x450` SC360 sensor channels** — decoded on the wire but no ESPHome sensor stanzas yet. When enabled in the SC360 installer menu (zone sensors / outdoor-sensor accessory), firmware stanzas will be needed. Low priority until the underlying hardware is actually connected.
+- **`sc360_outdoor_temp` (SC360 JSON) vs `trane_heat_pump_outdoor_air_temp` (CAN 0x380)** — two independent outdoor readings with observed deltas of several °F at steady state. Worth characterizing: the SC360 value is likely a filtered/slower-updated mirror of the same probe, but that's an assumption until confirmed with captures.
 
 ---
 
