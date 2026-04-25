@@ -94,6 +94,16 @@ globals:
     type: float
     restore_value: yes
     initial_value: "75.0"
+  # Last observed IndoorStatus.D (blower state: A=stopped/transition, B=running).
+  # Used to gate IndoorStatus.E numeric publication: when D=A we publish 0; for
+  # any other value (including the initial "" before any D broadcast arrives,
+  # and "B"=running) we trust the broadcast E values. The SC360 sends frequent
+  # partial IndoorStatus.E updates without D, so we must default-allow rather
+  # than default-block. Read-only — never affects what's commanded on the bus.
+  - id: last_d_state
+    type: std::string
+    restore_value: no
+    initial_value: ""
 
 # ---------------------------------------------------------------------------
 # Transmit script — sends a JSON string as segmented CAN frames on 0x641
@@ -747,9 +757,32 @@ canbus:
                   }
                   // I = forecast low (°F) - already in README, no sensor needed yet
                 }
-                // IndoorStatus
+                // IndoorStatus — parse D (blower state) first so it can gate E.
+                // D="B" = blower running; D="A" = stopped/transition. Verified
+                // against Nexia binary_sensor.upstairs_blower_active over 30+
+                // cycles (D leads Nexia by ~10-15s). The SC360 stops broadcasting
+                // fresh numeric IndoorStatus.E values when the blower is off, so
+                // without this gate the indoor_blower sensor stays pinned at the
+                // last commanded CFM% indefinitely. Reporting only — no effect on
+                // the bus or what the SC360 commands.
                 auto ind = j.find("\"IndoorStatus\"");
                 if (ind != std::string::npos) {
+                  auto id_pos = j.find("\"D\":\"", ind);
+                  if (id_pos != std::string::npos) {
+                    id_pos += 5;
+                    auto e = j.find("\"", id_pos);
+                    if (e != std::string::npos) {
+                      std::string d_state = j.substr(id_pos, e-id_pos);
+                      id(indoor_unit_state).publish_state(d_state);
+                      id(last_d_state) = d_state;
+                      // On transition out of "running", zero the blower speed
+                      // sensor immediately rather than waiting for the next
+                      // (now-non-existent) numeric E broadcast.
+                      if (d_state != "B") {
+                        id(indoor_blower).publish_state(0);
+                      }
+                    }
+                  }
                   auto ie = j.find("\"E\":\"", ind);
                   if (ie != std::string::npos) {
                     ie += 5;
@@ -758,20 +791,18 @@ canbus:
                       std::string estr = j.substr(ie, e-ie);
                       float v = atof(estr.c_str());
                       if (v > 0 && v <= 100) {
-                        // Numeric: publish as blower speed
-                        id(indoor_blower).publish_state(v);
+                        // Numeric: publish as blower speed unless D is known
+                        // to be "A" (stopped/transition). Default-allow on
+                        // empty/unknown D — partial Update frames carry E
+                        // without D, and we don't want to drop those.
+                        if (id(last_d_state) != "A") {
+                          id(indoor_blower).publish_state(v);
+                        }
                       } else if (estr.size() > 0 && !isdigit(estr[0])) {
-                        // Non-numeric: publish as fault string
+                        // Non-numeric: publish as fault string regardless of D.
                         id(supply_air_fault).publish_state(estr);
                       }
                     }
-                  }
-                  auto id_pos = j.find("\"D\":\"", ind);
-                  if (id_pos != std::string::npos) {
-                    id_pos += 5;
-                    auto e = j.find("\"", id_pos);
-                    if (e != std::string::npos)
-                      id(indoor_unit_state).publish_state(j.substr(id_pos, e-id_pos));
                   }
                 }
                 // ZoneSettings — zone 1 only. ZoneMode is the CONFIGURED
