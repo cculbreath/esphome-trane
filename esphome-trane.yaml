@@ -269,16 +269,10 @@ sensor:
     update_interval: 60s
     device_id: dev_sc360
 
-  - platform: template
-    name: "SC360 Outdoor Temp"
-    id: sc360_outdoor_temp
-    unit_of_measurement: "°F"
-    device_class: temperature
-    state_class: measurement
-    accuracy_decimals: 1
-    lambda: "return {};"
-    update_interval: 60s
-    device_id: dev_sc360
+  # SC360 Outdoor Temp removed 2026-04-27. The parser had been routing
+  # SystemOpStatus.E (which is indoor humidity, not outdoor temp) into
+  # this sensor via a wrong decimal-vs-integer heuristic. Outdoor temp
+  # comes from a different CAN frame surfaced as `outdoor_air_temp`.
 
   # --- Air Handler ----------------------------------------------------------
   - platform: template
@@ -655,15 +649,18 @@ canbus:
                     auto e = j.find("\"", e_pos);
                     if (e != std::string::npos) {
                       std::string estr = j.substr(e_pos, e-e_pos);
-                      // Values with decimal point (e.g. "28.00") are SC360 outdoor temp
-                      // Integer values (e.g. "42") are indoor humidity %
-                      if (estr.find('.') != std::string::npos) {
-                        float t = atof(estr.c_str());
-                        if (t > 0 && t < 130) id(sc360_outdoor_temp).publish_state(t);
-                      } else {
-                        float h = atof(estr.c_str());
-                        if (h > 0 && h <= 100) id(indoor_humidity).publish_state(h);
-                      }
+                      // SystemOpStatus.E is indoor humidity %, broadcast
+                      // as a zero-padded decimal like "55.00".
+                      // Verified 2026-04-25 over a 21h capture window
+                      // (esphome-trane/captures + Nexia cloud humidity):
+                      // r=+0.9924, mean |E − sensor.upstairs_humidity| =
+                      // 0.38%, ranges identical (50-65). The earlier
+                      // decimal-vs-integer heuristic was wrong — there
+                      // is no outdoor temp on this field. Outdoor temp
+                      // comes from a different CAN frame
+                      // (sensor.trane_heat_pump_outdoor_air_temp).
+                      float h = atof(estr.c_str());
+                      if (h > 0 && h <= 100) id(indoor_humidity).publish_state(h);
                     }
                   }
                 }
