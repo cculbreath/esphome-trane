@@ -127,9 +127,19 @@ void TraneClimate::setup() {
 
 void TraneClimate::control(const climate::ClimateCall &call) {
   // --- Mode change ----------------------------------------------------------
+  // Reseed action from current demand on the HA→ESP path, mirroring the
+  // mode_sensor callback's SC360→ESP path. Without this, a mode change from
+  // HA leaves this->action at its prior value: e.g. boot with mode=OFF
+  // default + demand_sensor firing "AC Stage 2" pins action=OFF (compute_
+  // action_ short-circuits on OFF), and a subsequent HA "Cool" tap publishes
+  // mode=COOL with action still OFF — observed 2026-04-28 09:57:21Z.
   if (call.get_mode().has_value()) {
     climate::ClimateMode new_mode = *call.get_mode();
     this->mode = new_mode;
+    std::string d = (demand_sensor_ != nullptr && demand_sensor_->has_state())
+                      ? demand_sensor_->state
+                      : std::string();
+    this->action = this->compute_action_(this->mode, d);
     this->publish_state();
     mode_trigger_.trigger(new_mode);
   }
